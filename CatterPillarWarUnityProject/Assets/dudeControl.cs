@@ -20,27 +20,42 @@ public class dudeControl : MonoBehaviour {
 	public int movementDelayMax=10;
 	public int turnSpeed=10;
 
+	public bool isAutoDude;
+
 	void Start () {
 	
+		if (isAutoDude) {
+			movementForwardBack= 1;
+			movementForwardBack = -1;
+			movingObject.GetComponent<Rigidbody> ().AddRelativeForce (-movementSpeedTrim, -100, 0);
+			anchorObject.GetComponent<Rigidbody> ().AddRelativeForce (0, -100, 0);
+		}
+
 	}
 
 	// Update is called once per frame
 	void Update () {
-		movementVector.x = Input.GetAxis("Player1X") * turnSpeed;
-		movementVector.y = Input.GetAxis("Player1Y") * movementSpeed;
-
-
 		if (Input.GetButtonDown ("Player1Jump")) {
-			Debug.Log("ControllerJump!");
-			for (int segs=12;segs>0;segs--){
-			segments[segs].GetComponent<Rigidbody>().velocity=segments[segmentCount].GetComponent<Rigidbody>().velocity + new Vector3(0,4,0);
-
+			Debug.Log ("ControllerJump!");
+			for (int segs=12; segs>0; segs--) {
+				segments [segs].GetComponent<Rigidbody> ().velocity = segments [segmentCount].GetComponent<Rigidbody> ().velocity + new Vector3 (0, 4, 0);
+				
 			}
-
+			
 		}
+		
+		if (isAutoDude) {
+			movementForwardBack = 1;
+		} else {
 
-		//float tiltX = Input.GetAxis (Controllerx) * 2000;
-		//float tiltY = Input.GetAxis (Controllery) * 4000;
+			movementVector.x = Input.GetAxis ("Player1X") * turnSpeed;
+			movementVector.y = Input.GetAxis ("Player1Y") * movementSpeed;
+
+
+		
+
+			//float tiltX = Input.GetAxis (Controllerx) * 2000;
+			//float tiltY = Input.GetAxis (Controllery) * 4000;
 
 
 
@@ -71,46 +86,45 @@ public class dudeControl : MonoBehaviour {
 //		}
 
 		
-		if (Input.GetButtonUp ("Player1X")) {
-			Debug.Log("Stop!");
-			movementForwardBack = 0;
-		}
+			if (Input.GetButtonUp ("Player1X")) {
+				Debug.Log ("Stop!");
+				movementForwardBack = 0;
+			}
 //		
 //		if (Input.GetButtonUp (ControllerBackwards)) {
 //			Debug.Log("Stop!");
 //			movementForwardBack = 0;
 //		}
 
-		if (movementVector.y < 0) {
-			movementForwardBack = 1;
-			//movingObject.GetComponent<Rigidbody>().AddRelativeForce(movementSpeedTrim,-100,0);
-			anchorObject.GetComponent<Rigidbody>().AddRelativeForce(0,-100,0);
-			//steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,100,0);
-		}
+			if (movementVector.y < 0) {
+				movementForwardBack = 1;
+				//movingObject.GetComponent<Rigidbody>().AddRelativeForce(movementSpeedTrim,-100,0);
+				anchorObject.GetComponent<Rigidbody> ().AddRelativeForce (0, -100, 0);
+				//steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,100,0);
+			}
 
-		if (movementVector.y > 0) {
-			movementForwardBack = -1;
-			movingObject.GetComponent<Rigidbody>().AddRelativeForce(-movementSpeedTrim,-100,0);
-			anchorObject.GetComponent<Rigidbody>().AddRelativeForce(0,-100,0);
-			//steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,100,0);
-		}
+			if (movementVector.y > 0) {
+				movementForwardBack = -1;
+				movingObject.GetComponent<Rigidbody> ().AddRelativeForce (-movementSpeedTrim, -100, 0);
+				anchorObject.GetComponent<Rigidbody> ().AddRelativeForce (0, -100, 0);
+				//steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,100,0);
+			}
 
-		if (movementVector.y ==0) {
-			segmentCount=segmantMax;
-			movementForwardBack=0;
-		}
+			if (movementVector.y == 0) {
+				segmentCount = segmantMax;
+				movementForwardBack = 0;
+			}
 
-		if (movementVector.x > 0) {
-			steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,0,-movementVector.x);
-			anchorObject.GetComponent<Rigidbody>().AddRelativeForce(0,-100,0);
-		}
+			if (movementVector.x > 0) {
+				steeringObject.GetComponent<Rigidbody> ().AddRelativeForce (0, 0, -movementVector.x);
+				anchorObject.GetComponent<Rigidbody> ().AddRelativeForce (0, -100, 0);
+			}
 		
-		if (movementVector.x < 0) {
-			steeringObject.GetComponent<Rigidbody>().AddRelativeForce(0,0,-movementVector.x);
-			anchorObject.GetComponent<Rigidbody>().AddRelativeForce(0,-100,0);
+			if (movementVector.x < 0) {
+				steeringObject.GetComponent<Rigidbody> ().AddRelativeForce (0, 0, -movementVector.x);
+				anchorObject.GetComponent<Rigidbody> ().AddRelativeForce (0, -100, 0);
+			}
 		}
-
-
 	}
 
 	void FixedUpdate(){
