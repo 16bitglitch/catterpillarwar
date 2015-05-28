@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\dudeControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Turis\Turis\Assets\midi-input\MidiInput.cs">
     <Files>
-      <File FileName="Assets\dudeControl.cs" Line="41" Column="75" />
+      <File FileName="..\..\Turis\Turis\Assets\midi-input\MidiInput.cs" Line="65" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
